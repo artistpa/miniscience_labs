@@ -17,8 +17,6 @@ gmsh.initialize()
 # directory):
 path = os.path.dirname(os.path.abspath(__file__))
 gmsh.merge(os.path.join(path, 'Thor.stl'))
-#gmsh.merge(os.path.join(path, 'Menger_sponge_sample.stl'))
-#gmsh.merge(os.path.join(path, 'Stanford_Bunny_sample.stl'))
 
 # We first classify ("color") the surfaces by splitting the original surface
 # along sharp geometrical features. This will create new discrete surfaces,
