@@ -19,6 +19,7 @@ class CalcMesh:
 
         # Тут может быть скорость, но сейчас здесь нули
         self.velocity = np.zeros(shape=(3, int(len(nodes_coords) / 3)), dtype=np.double)
+        self.velocity[2] = 100 * np.sin(self.nodes[0] - self.nodes[1])
 
         # Пройдём по элементам в модели gmsh
         self.tetrs = np.array([tetrs_points[0::4],tetrs_points[1::4],tetrs_points[2::4],tetrs_points[3::4]])
@@ -144,5 +145,13 @@ assert(len(tetrsNodesTags) % 4 == 0)
 
 mesh = CalcMesh(nodesCoord, tetrsNodesTags)
 mesh.snapshot(0)
+
+tau = 0.01
+
+# Делаем шаги по времени,
+# на каждом шаге считаем новое состояние и пишем его в VTK
+for i in range(1, 100):
+    mesh.move(tau)
+    mesh.snapshot(i)
 
 gmsh.finalize()
