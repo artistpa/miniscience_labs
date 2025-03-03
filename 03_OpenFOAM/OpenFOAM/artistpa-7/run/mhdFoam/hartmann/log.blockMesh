@@ -1,0 +1,73 @@
+/*---------------------------------------------------------------------------*\
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     | Website:  https://openfoam.org
+    \\  /    A nd           | Version:  7
+     \\/     M anipulation  |
+\*---------------------------------------------------------------------------*/
+Build  : 7-3bcbaf946ae9
+Exec   : blockMesh
+Date   : Feb 24 2025
+Time   : 15:16:37
+Host   : "DESKTOP-H0LGNM1"
+PID    : 2594
+I/O    : uncollated
+Case   : /home/artistpa/OpenFOAM/artistpa-7/run/mhdFoam/hartmann
+nProcs : 1
+sigFpe : Enabling floating point exception trapping (FOAM_SIGFPE).
+fileModificationChecking : Monitoring run-time modified files using timeStampMaster (fileModificationSkew 10)
+allowSystemOperations : Allowing user-supplied system call operations
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+Create time
+
+Creating block mesh from
+    "/home/artistpa/OpenFOAM/artistpa-7/run/mhdFoam/hartmann/system/blockMeshDict"
+Creating block edges
+No non-planar block faces defined
+Creating topology blocks
+Creating topology patches
+
+Creating block mesh topology
+
+Check topology
+
+	Basic statistics
+		Number of internal faces : 0
+		Number of boundary faces : 6
+		Number of defined boundary faces : 6
+		Number of undefined boundary faces : 0
+	Checking patch -> block consistency
+
+Creating block offsets
+Creating merge list .
+
+Creating polyMesh from blockMesh
+Creating patches
+Creating cells
+Creating points with scale 1
+    Block 0 cell size :
+        i : 0.2 .. 0.2
+        j : 0.05
+        k : 0.1
+
+Writing polyMesh
+----------------
+Mesh Information
+----------------
+  boundingBox: (0 -1 0) (20 1 0.1)
+  nPoints: 8282
+  nCells: 4000
+  nFaces: 16140
+  nInternalFaces: 7860
+----------------
+Patches
+----------------
+  patch 0 (start: 7860 size: 40) name: inlet
+  patch 1 (start: 7900 size: 40) name: outlet
+  patch 2 (start: 7940 size: 100) name: lowerWall
+  patch 3 (start: 8040 size: 100) name: upperWall
+  patch 4 (start: 8140 size: 8000) name: frontAndBack
+
+End
+
