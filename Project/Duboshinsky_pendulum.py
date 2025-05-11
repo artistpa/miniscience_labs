@@ -1,8 +1,7 @@
 import numpy as np
-from matplotlib import pyplot as plt
-from matplotlib.animation import FuncAnimation
-from math import sin, cos
-# plt.style.use('seaborn-pastel')
+import matplotlib.pyplot as plt
+import time
+from math import cos, sin
 
 f = open("t.csv")
 t = []
@@ -16,25 +15,25 @@ for line in f:
     fi.append(float(line))
 f.close()
 
-fig = plt.figure()
+x = [sin(i) for i in fi]
+y = [-cos(i) for i in fi]
+t1 = [(t[i + 1] - t[i]) for i in range(len(t) - 1)]
+t1.append(t1[-1])
+
+plt.ion()
+fig = plt.figure(figsize=(5, 5))
 ax = plt.axes(xlim=(-1.5, 1.5), ylim=(-1.5, 1.5))
-line, = ax.plot([], [])
+line, = ax.plot([x[0], 0], [y[0], 0], marker='.', label="")
+ax.set_title("Анимация маятника Дубошинского")
+ax.legend()
 plt.grid()
 
+for i in range(0, len(fi), 1):  # <- количество пропусков кадров для ускорения
+    line.set_data([x[i], 0], [y[i], 0])
+    plt.draw()
+    plt.gcf().canvas.flush_events()
 
-def init():
-    line.set_data([], [])
-    return line,
+    time.sleep(t1[i])
 
-
-def animate(i):
-    x = [0, sin(fi[i])]
-    y = [0, -cos(fi[i])]
-    line.set_data(x, y)
-    return line,
-
-
-anim = FuncAnimation(fig, animate, init_func=init,
-                     frames=400, interval=0.1, blit=True)
-
-anim.save('sine_wave.gif', writer='imagemagick')
+plt.ioff()
+plt.show()
